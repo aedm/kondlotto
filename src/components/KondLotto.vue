@@ -1,7 +1,7 @@
 <template>
   <template v-if="btcToUsd > 0">
     <div class="container mx-auto p-8">
-      <div class="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mx-auto">
+      <div class="bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl mx-auto">
         <div class="p-8 text-lg font-sans text-center">
           <p>Kond már</p>
           <p class="text-6xl p-3 font-bold">
@@ -13,8 +13,8 @@
         </div>
       </div>
     </div>
-    <p>USD {{ usdToHuf }} as of {{ usdAsOf }}</p>
-    <p>BTC {{ btcToUsd }} as of {{ lastBitcoinFetch }}</p>
+<!--    <p>USD {{ usdToHuf }} as of {{ usdAsOf }}</p>-->
+<!--    <p>BTC {{ btcToUsd }} as of {{ lastBitcoinFetch }}</p>-->
   </template>
   <template v-else>
     <p class="text-center italic text-gray-500">loading...</p>
