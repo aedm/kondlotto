@@ -1,27 +1,25 @@
 <template>
-  <template v-if="btcToUsd > 0">
-    <div class="container mx-auto p-8">
-      <div class="bg-white rounded-xl shadow-md overflow-hidden md:max-w-xl mx-auto">
-        <div class="p-8 text-lg font-sans text-center">
-          <p>Kond már</p>
-          <p class="text-6xl p-3 font-bold">
-          <span :class="ticketCount < 0 ? 'text-red-400' : 'text-green-500' ">
+  <template v-if="btcToUsd > 0 && usdToHuf > 0">
+    <div class="mx-0 mt-12 mb-16 text-center text-lg font-medium font-sans text-gray-300">
+      <p>Kond már</p>
+      <p class="text-6xl p-3 font-bold text-shadow">
+          <span :class="ticketCount < 0 ? 'text-red-400' : 'text-green-400' ">
           {{ ticketCount }}
           </span>
-          </p>
-          <p>lottószelvényt nyert Bitcoinnal.</p>
-        </div>
-      </div>
+      </p>
+      <p>lottószelvényt nyert Bitcoinnal.</p>
     </div>
-<!--    <p>USD {{ usdToHuf }} as of {{ usdAsOf }}</p>-->
-<!--    <p>BTC {{ btcToUsd }} as of {{ lastBitcoinFetch }}</p>-->
   </template>
   <template v-else>
     <p class="text-center italic text-gray-500">loading...</p>
   </template>
+  <Ticker/>
+  <Ticker/>
 </template>
 
 <script lang="ts">
+import Ticker from "./Ticker.vue";
+
 const LOTTERY_TICKET_PRICE_HUF = 300;
 const BTC_AMOUNT = 0.00202943;
 const BTC_BOUGHT_FOR_HUF = 30000;
@@ -33,6 +31,7 @@ import axios from "axios";
 
 export default {
   name: "KondLotto",
+  components: { Ticker },
   data() {
     return {
       btcToUsd: null as number | null,
@@ -57,7 +56,7 @@ export default {
   },
   beforeMount() {
     this.getBitcoinPrice();
-    this.getUsdHufPrice();
+    //this.getUsdHufPrice();
   },
   methods: {
     async getBitcoinPrice() {
